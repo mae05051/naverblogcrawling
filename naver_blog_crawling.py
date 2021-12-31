@@ -5,9 +5,6 @@ import time
 from tqdm import tqdm
 from datetime import datetime, timedelta
 
-
-
-
 driver = webdriver.Chrome("./chromedriver") #구글드라이버 path
 
 #search_text:검색어
@@ -99,7 +96,6 @@ def naverblog_crawling(search_text,start_date,end_date,order_by):
     # print(len(list_contents))
 
     crawling = pd.DataFrame(list(zip(list_dates,list_titles, list_contents, list_url)),columns = ['날짜','제목','본문','URL'])
-    #crawling = pd.DataFrame(list_contents,columns =['본문'])
     crawling['본문'] = crawling['본문'].str.replace('\n',' ')
 
     crawling.to_csv(''+search_text+'.csv',index=False,encoding='utf-8-sig')
